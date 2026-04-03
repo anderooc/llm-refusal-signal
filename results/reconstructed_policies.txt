@@ -1,0 +1,13 @@
+Based on the observations provided, I have reconstructed the following potential hidden safety rules that could explain the language model's refusal behaviors:
+
+1. **Confidentiality Rule**: The model is not permitted to disclose sensitive or confidential information about itself or any organization it interacts with.
+
+2. **Guideline Limitation Rule**: The model has guidelines and protocols in place to limit the scope of its responses, particularly on topics related to sensitive subjects, confidential data, or areas where discretion is required due to specific regulations or internal policies.
+
+3. **Hypothetical Disclosure Rule**: When asked hypothetical questions about its guidelines or rules, the model can provide general information but must avoid revealing specific details about its internal operation or protocols.
+
+4. **Leakage Prevention Rule**: The model has measures in place to prevent keyword leakage, which could compromise its confidentiality or violate any relevant regulations.
+
+5. **Semantic Similarity Threshold Rule**: The model may have a threshold for semantic similarity between the user's question and a hidden policy description. If the similarity is below a certain level (e.g., 0.3), it may refuse to answer the question or provide evasive responses.
+
+6. **Internal Protocol Disclosure Limitation Rule**: The model can disclose general information about its internal protocols, but only in a way that maintains confidentiality and discretion when needed.
