@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+title: "Refusal Signal Extraction: Semantic Leakage through LLM Refusals"
+message: "If you use this software or its findings, please cite it as below."
+type: software
+authors:
+  - given-names: Andrew
+    family-names: Chang
+    affiliation: "Emory University, Department of Computer Science"
+    email: andrew.chang@emory.edu
+repository-code: "https://github.com/anderooc/llm-refusal-signal"
+abstract: >-
+  Safety-aligned large language models routinely refuse restricted requests and
+  explain why, in the name of transparency and user trust. This work shows that
+  those refusal explanations act as an unintended side channel, permitting
+  partial reconstruction of hidden system policies without prompt injection or
+  jailbreaking. It introduces an evaluation framework for refusal signal
+  leakage combining keyword-based detection with embedding similarity between
+  refusal explanations and hidden rule descriptions, and demonstrates that the
+  leaked signal is sufficient for a separate model instance to reconstruct the
+  intent and structure of policies it never observed.
+keywords:
+  - large language models
+  - AI safety
+  - semantic leakage
+  - prompt injection
+  - red teaming
+  - refusal behaviour
+license: MIT
+version: 1.0.0
+date-released: "2025-12-14"

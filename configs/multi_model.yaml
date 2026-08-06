@@ -1,0 +1,18 @@
+# Sweep several open-weight models to test whether leakage patterns generalise
+# beyond llama3.1 (limitation 3 in docs/limitations.md).
+#
+#   ollama pull llama3.1 && ollama pull mistral && ollama pull gemma2
+#   refusal-signal -c configs/multi_model.yaml generate
+#   refusal-signal -c configs/multi_model.yaml score
+
+models:
+  - llama3.1
+  - mistral
+  - gemma2
+
+reconstruction_model: llama3.1
+embedding_model: all-MiniLM-L6-v2
+request_delay_seconds: 0.5
+
+results_dir: results/multi_model
+figures_dir: results/multi_model/figures

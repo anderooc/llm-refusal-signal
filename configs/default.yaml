@@ -1,0 +1,24 @@
+# Configuration for the published run.
+#
+# Every value here is also the built-in default, so `refusal-signal <command>`
+# without `-c` reproduces the paper.
+
+# Models probed for refusal behaviour, as Ollama tags.
+models:
+  - llama3.1
+
+# Model asked to reconstruct the hidden rules. It sees only leakage statistics
+# and refusal excerpts -- never the system prompt.
+reconstruction_model: llama3.1
+
+# Sentence embedding model backing the semantic leakage score.
+embedding_model: all-MiniLM-L6-v2
+
+# Seconds to wait between generation calls, so a local daemon is not saturated.
+request_delay_seconds: 0.5
+
+results_dir: results
+figures_dir: results/figures
+
+# Uncomment to point at a non-default Ollama daemon.
+# ollama_host: http://localhost:11434

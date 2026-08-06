@@ -1,0 +1,84 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "refusal-signal"
+version = "1.0.0"
+description = "Measuring semantic leakage of hidden system policies through LLM refusal explanations"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [{ name = "Andrew Chang", email = "andrew.chang@emory.edu" }]
+keywords = [
+  "large-language-models",
+  "ai-safety",
+  "prompt-injection",
+  "semantic-leakage",
+  "red-teaming",
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+  "Topic :: Security",
+]
+dependencies = [
+  "pandas>=1.5",
+  "numpy>=1.23",
+  "matplotlib>=3.7",
+  "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+# Sentence embeddings for the semantic leakage score.
+embeddings = ["sentence-transformers>=2.2", "torch>=2.0"]
+# Live generation against a local Ollama daemon.
+generate = ["ollama>=0.1.9", "python-dotenv>=1.0"]
+notebook = ["jupyter>=1.0", "ipykernel>=6.0"]
+dev = ["pytest>=7.4", "pytest-cov>=4.1", "ruff>=0.5"]
+all = [
+  "refusal-signal[embeddings]",
+  "refusal-signal[generate]",
+  "refusal-signal[notebook]",
+  "refusal-signal[dev]",
+]
+
+[project.scripts]
+refusal-signal = "refusal_signal.cli:main"
+
+[project.urls]
+Repository = "https://github.com/anderooc/llm-refusal-signal"
+Paper = "https://github.com/anderooc/llm-refusal-signal/blob/main/paper/refusal_signal_extraction.pdf"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/refusal_signal"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --strict-markers"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "RUF"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["B011"]
+# Prompt text is reproduced verbatim from the published run; rewrapping it to
+# satisfy a line-length rule would change what the model was asked.
+"src/refusal_signal/rules.py" = ["E501"]
+"src/refusal_signal/reconstruction.py" = ["E501"]
+# Notebooks carry prose and preserved original output; prompt strings and plot
+# titles are reproduced verbatim rather than normalised.
+"notebooks/*.ipynb" = ["E501", "RUF001"]
+
+[tool.coverage.run]
+source = ["src/refusal_signal"]
